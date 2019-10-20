@@ -1,0 +1,5 @@
+%{
+  "ex_aws": {:hex, :ex_aws, "2.0.2", "8df2f96f58624a399abe5a0ce26db648ee848aca6393b9c65c939ece9ac07bfa", [:mix], [{:configparser_ex, "~> 2.0", [hex: :configparser_ex, repo: "hexpm", optional: true]}, {:hackney, "1.6.3 or 1.6.5 or 1.7.1 or 1.8.6 or ~> 1.9", [hex: :hackney, repo: "hexpm", optional: true]}, {:jsx, "~> 2.8", [hex: :jsx, repo: "hexpm", optional: true]}, {:poison, ">= 1.2.0", [hex: :poison, repo: "hexpm", optional: true]}, {:sweet_xml, "~> 0.6", [hex: :sweet_xml, repo: "hexpm", optional: true]}, {:xml_builder, "~> 0.1.0", [hex: :xml_builder, repo: "hexpm", optional: true]}], "hexpm"},
+  "ex_aws_dynamo": {:hex, :ex_aws_dynamo, "2.3.1", "264dcc758de24b1d4430ae450751fcaeac7c20b64211cdb411ab3b2641c5fefa", [:mix], [{:ex_aws, "~> 2.0", [hex: :ex_aws, repo: "hexpm", optional: false]}], "hexpm"},
+  "ex_aws_dynamo_streams": {:hex, :ex_aws_dynamo_streams, "2.0.0", "9b0c4712319a45a32a0a949b30eaf1f581fda0b0a73f77c8b1fffbb7dd31fc50", [:mix], [{:ex_aws, "~> 2.0.0", [hex: :ex_aws, repo: "hexpm", optional: false]}], "hexpm"},
+}
