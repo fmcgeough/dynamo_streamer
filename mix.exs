@@ -14,7 +14,8 @@ defmodule DynamoStreamer.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      mod: {DynamoStreamer.Application, []}
     ]
   end
 
@@ -22,7 +23,10 @@ defmodule DynamoStreamer.MixProject do
   defp deps do
     [
       {:ex_aws_dynamo, "~> 2.3"},
-      {:ex_aws_dynamo_streams, "~> 2.0"}
+      {:ex_aws_dynamo_streams, "~> 2.0"},
+      {:hackney, "~> 1.15"},
+      {:poison, "~> 3.0"},
+      {:puid, "~> 1.0"}
     ]
   end
 end
