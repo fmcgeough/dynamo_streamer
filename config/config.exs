@@ -17,3 +17,5 @@ config :ex_aws, :dynamodb_streams,
   host: "localhost",
   port: 8000,
   region: "us-east-1"
+
+import_config "#{Mix.env()}.exs"
