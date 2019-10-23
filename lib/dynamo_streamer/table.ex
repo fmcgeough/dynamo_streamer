@@ -2,6 +2,7 @@ defmodule DynamoStreamer.Table do
   @moduledoc """
   Provide wrappers around DynamoDB table operations
   """
+  alias DynamoStreamer.{Shard, StreamInfo}
   alias ExAws.Dynamo
 
   @doc """
@@ -88,6 +89,36 @@ defmodule DynamoStreamer.Table do
     tablename
     |> Dynamo.update_time_to_live(field, true)
     |> request()
+  end
+
+  @doc """
+  Grab latest stream arn for a table
+  """
+  @spec stream_info(binary) :: StreamInfo.t() | {:error, term}
+  def stream_info(tablename) do
+    with {:ok, description} <- describe_table(tablename) do
+      DynamoStreamer.StreamInfo.new(description)
+    end
+  end
+
+  @doc """
+  List all the shards associated with a stream_arn
+  """
+  @spec list_shards(%{stream_arn: binary}) :: [Shard.t()] | {:error, term}
+  def list_shards(%{stream_arn: stream_arn}) do
+    stream_arn
+    |> ExAws.DynamoStreams.describe_stream()
+    |> request()
+    |> case do
+      {:ok, %{"StreamDescription" => %{"Shards" => shards}}} ->
+        shards |> Enum.map(&Shard.new(&1))
+
+      {:ok, val} ->
+        {:error, "Invalid StreamDescription. #{inspect(val)}"}
+
+      err ->
+        err
+    end
   end
 
   defp request(request) do

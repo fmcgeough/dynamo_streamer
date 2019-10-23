@@ -1,4 +1,7 @@
 defmodule DynamoStreamer.UserActivity do
+  @moduledoc """
+  Our test table
+  """
   @derive ExAws.Dynamo.Encodable
 
   alias DynamoStreamer.{Id, Table}
@@ -22,5 +25,15 @@ defmodule DynamoStreamer.UserActivity do
          {:ok, _} <- Table.setup_stream_for_table(tablename) do
       Table.setup_ttl_for_table(tablename)
     end
+  end
+
+  @doc """
+  Provide a helper to generate random data
+  """
+  def random do
+    new("#{Id.generate()}@gmail.com", %{
+      page: Id.generate(),
+      task: Enum.random(["buying", "selling", "viewing", "data_entry"])
+    })
   end
 end
